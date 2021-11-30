@@ -1,5 +1,5 @@
 import React from 'react'
-import lessStyle from './index.less'
+import './index.less'
 
 interface IProps {
     /**
@@ -9,12 +9,12 @@ interface IProps {
     /**
      * @des 样式
      */
-    styles: React.CSSProperties;
+    styles?: React.CSSProperties;
 }
 
 function Title({text, styles}: IProps) {
     return (
-        <div style={styles} className={lessStyle.title}>{ text }</div>
+        <div style={styles} styleName="title">{ text }</div>
     )
 }
 
