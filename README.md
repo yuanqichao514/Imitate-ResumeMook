@@ -1,5 +1,5 @@
 # Imitate-ResumeMook
-It's a electron + react +ts project learning project
+It's a electron + react +ts learning project
 
 
 ## prepare
