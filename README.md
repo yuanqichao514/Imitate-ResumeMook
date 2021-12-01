@@ -42,3 +42,7 @@ It's a electron + react +ts project learning project
       "electron-debug": "^3.2.0",
       
       "electron-devtools-installer": "^3.2.0",
+
+## Start
+  
+  使用```npm run start:main```以及```npm run start:render```两个命令同时开启主进程和渲染进程就能顺利打开项目了
