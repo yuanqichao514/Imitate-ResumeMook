@@ -15,6 +15,8 @@ module.exports = {
       // 将 resolve.alias 设置为 false 将告知 webpack 忽略模块。
       // 'ignored-module': false
       '@src': path.join(__dirname, '../', 'app/renderer'),
+      '@assets': path.join(__dirname, '../', 'assets/'),
+      '@common': path.join(__dirname, '../', 'app/renderer/common'),
     },
   },
   module: {
