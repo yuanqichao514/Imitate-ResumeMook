@@ -1,8 +1,11 @@
 /**
  * @desc electron 主入口
  */
+
+import { ipcMain } from "electron";
+
 const path = require('path')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcRenderer } = require('electron')
 
 function isDev() {
     // webpack.DefinePlugin 定义的构建变量
@@ -35,4 +38,12 @@ app.whenReady().then(() => {
     app.on('activate', function () {
         if( BrowserWindow.getAllWindows.length === 0 ) createWindow();
     })
+})
+
+// 拼接一个根路径， getAppPath是主进程独有的方法
+const ROOT_PATH = path.join(app.getAppPath(), '../');
+
+// 监听渲染进程发的消息并回复
+ipcMain.on('get-root-path', (event, arg) => {
+    event.reply('reply-root-path', ROOT_PATH)
 })

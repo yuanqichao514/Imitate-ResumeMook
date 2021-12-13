@@ -5,45 +5,22 @@ import { shell } from 'electron'
 // import logo from '@assets/happyHoney.png'
 import { ROUTER_ENTRY, ROUTER_KEY } from '@common/constants/router'
 import { isHttpOrHttpsUrl } from "@src/common/utils/router";
-import { useSelector, useDispatch } from 'react-redux';
 
 function Root() {
     // 通过history.push进行跳转
     const history = useHistory()
 
     const onRouterToLink = (router: TSRouter.Item) => {
-        if( isHttpOrHttpsUrl(router.url) )
-        {
-            shell.openExternal('https://github.com/yuanqichao514/Imitate-ResumeMook')
+        if (isHttpOrHttpsUrl(router.url)) {
+          shell.openExternal(router.url);
         } else {
-            console.log('跳转到简历页面');
-            history.push(router.url)
+          if (router.key !== ROUTER_KEY.resume) {
+            history.push(router.url);
+          } else {
+            history.push(router.url);
+          }
         }
-    }
-
-    // 通过action修改state中的值
-    const dispatch = useDispatch()
-    // 获取state中的值
-    const appName = useSelector((state: any) => state.globalModel.appName)
-    console.log(appName);
-    // 在didMount中使用一个定时器修改appName
-    useEffect( () => {
-        setTimeout(() => {
-            console.log('3s 后修改。。。');
-            dispatch({
-                type: 'globalModel/setStore',
-                payload: {
-                    key: 'appName',
-                    values: 'visResumeMook',
-                },
-            });
-        }, 3000);
-    }, []);
-    // 打印appName的值
-    useEffect(() => {
-        console.log('appName = ', appName);  
-    }, [appName])
-    
+      };
 
     return (
         <div styleName="root">
