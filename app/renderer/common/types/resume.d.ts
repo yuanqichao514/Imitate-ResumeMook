@@ -222,6 +222,6 @@ export interface SliderItem {
     /**
      * @description 是否必须
      */
-    require: boolean;
+    require?: boolean;
 }
 }
