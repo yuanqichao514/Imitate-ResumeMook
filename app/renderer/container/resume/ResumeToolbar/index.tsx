@@ -7,6 +7,7 @@ import MyScrollBar from '@common/components/myScrollBox';
 import RESUME_TOOLBAR_LIST from "@src/common/constants/resume";
 import { onAddToolbar, onDeleteToolbar } from './utils';
 import { useDispatch } from 'react-redux';
+import Messager, { MESSAGE_EVENT_NAME_MAPS } from '@common/messager'
 
 function ResumeToolbar() {
     const height = document.body.clientHeight;
@@ -86,6 +87,7 @@ function ResumeToolbar() {
                     styleName="box"
                     key={addSlider.key}
                     onClick={() => {
+                      // 事件发送
                       Messager.send(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, {
                         form_name: addSlider.key,
                       });
@@ -104,6 +106,7 @@ function ResumeToolbar() {
                           <i
                             styleName="delete"
                             onClick={(e: React.MouseEvent) => {
+                              // 这里需要阻止冒泡，因为删除之后还会冒泡触发上面的发送事件
                               e.stopPropagation && e.stopPropagation();
                               onDeleteSliderAction(addSlider);
                             }}
