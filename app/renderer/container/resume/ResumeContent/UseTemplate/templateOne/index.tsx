@@ -14,18 +14,12 @@ import Skill from './components/Skill';
 import Post from './components/Post';
 import Project from './components/Project';
 import Work from './components/Work';
-
-// 引入一系列的组件代码，在此省略
 import { useSelector } from 'react-redux';
 import { RESUME_TOOLBAR_MAPS } from '@common/constants/resume';
 
 function TemplateOne() {
-
-  // 👇 获取简历信息数据
   const base: TSResume.Base = useSelector((state: any) => state.resumeModel.base);
-  // 👇 获取工具条模块 keys
   const resumeToolbarKeys: string[] = useSelector((state: any) => state.templateModel.resumeToolbarKeys);
-  
   // 必须带有id，以方便导出时获取DOM元素内容
   return (
     <div styleName="a4-box">

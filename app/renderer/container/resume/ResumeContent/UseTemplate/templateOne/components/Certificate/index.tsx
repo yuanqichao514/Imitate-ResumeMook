@@ -3,17 +3,21 @@
  * @author pengdaokuan
  */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import '../../../styles/template-one.less';
 
 function Certificate() {
+  const certificate: string = useSelector((state: any) => state.resumeModel.certificate);
+  const certificateList: string[] = useSelector((state: any) => state.resumeModel.certificateList);
   return (
     <div styleName="container">
       <p styleName="title">荣誉奖励 Certificate</p>
       <ul styleName="content">
-        <li>全国英语六级证书</li>
-        <li>全国计算机二级证书</li>
-        <li>浙江讲义气第一名</li>
-        <li>校十佳歌手大赛未参赛选手</li>
+        {certificate &&
+          certificateList.length > 0 &&
+          certificateList?.map((value: string, index: number) => {
+            return <li key={index}>{value}</li>;
+          })}
       </ul>
     </div>
   );
